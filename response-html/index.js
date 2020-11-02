@@ -1,5 +1,11 @@
 const http = require('http')
 
+const fs = require('fs')
+
+const  aboutPage = fs.readFileSync('about.html')
+const  contactPage = fs.readFileSync('contact.html')
+const  homePage = fs.readFileSync('index.html')
+
 
 const server = http.createServer((resquest, response) => {
 
@@ -7,15 +13,15 @@ const server = http.createServer((resquest, response) => {
     // Here Comparision between two values using ===. It will compare strict check means it will check datatype as well.
     if (resquest.url === '/about') {
 
-        return response.end("The about page")
+        return response.end(aboutPage)
       // Here Comparision between two values using ==. It will compare irrespective of datatype of variable
-    } else if (resquest.url == '/contact') {
+    } else if (resquest.url === '/contact') {
 
-        return response.end("The contact page")
+        return response.end(contactPage)
 
     } else if (resquest.url === '/') {
 
-        return response.end("The Home page")
+        return response.end(homePage)
     
     } else {
 
