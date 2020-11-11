@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: hello-world-python
+service: token-based-lambda-authorizer-function
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -22,7 +22,9 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: nodejs12.x
+  profile: default
+  region: eu-west-1
 
 # you can overwrite defaults here
 #  stage: dev
@@ -51,15 +53,19 @@ provider:
 # you can add packaging information here
 #package:
 #  include:
-#    - include-me.py
+#    - include-me.js
 #    - include-me-dir/**
 #  exclude:
-#    - exclude-me.py
+#    - exclude-me.js
 #    - exclude-me-dir/**
 
 functions:
   hello:
-    handler: handler.hello
+    handler: handler.handler
+    memorySize: 128
+    timeout: 10
+    Policies:
+      - 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -101,7 +107,51 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
+resources:
+  apigw:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: apigw
+      ProtocolType: HTTP
+      RouteSelectionExpression:
+      
+
+      ApiKeySelectionExpression: String
+      BasePath: String
+      Body: Json
+      BodyS3Location: 
+        BodyS3Location
+      CorsConfiguration: 
+        Cors
+      CredentialsArn: String
+      Description: String
+      DisableExecuteApiEndpoint: Boolean
+      DisableSchemaValidation: Boolean
+      FailOnWarnings: Boolean
+ 
+
+      RouteKey: String
+      RouteSelectionExpression: String
+      Tags: Json
+      Target: String
+      Version: String
+  
+  apiRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref apigw
+      RouteKey: $auth
+
+  apiIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref apigw
+      Description: Connect Integration
+      IntegrationType: AWS_PROXY
+      IntegrationUri: 
+
+
+
 #  Resources:
 #    NewResource:
 #      Type: AWS::S3::Bucket
