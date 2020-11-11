@@ -33,6 +33,10 @@ sls invoke -f hello -l
 or 
 sls logs -f hello -t
 ```
+### __Invoke the funtion locally__
+```
+sls invoke local -f hello
+```
 ### __Update the function__
 ```
 sls deploy -f hello
@@ -40,4 +44,8 @@ sls deploy -f hello
 ### __Destroy all__
 ```
 sls remove
+```
+### __Serverless plugin to create a VPC__
+```
+npx sls plugin install -n serverless-vpc-plugin
 ```
