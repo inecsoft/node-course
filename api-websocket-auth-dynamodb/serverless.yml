@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: token-based-lambda-authorizer-function
+service: api-websocket-auth-dynamodb
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -22,9 +22,11 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: python3.8
   profile: default
   region: eu-west-1
+  websocketsApiName: custom-websockets-api
+  websocketsApiRouteSelectionExpression: $request.body.action
 
 # you can overwrite defaults here
 #  stage: dev
@@ -53,21 +55,31 @@ provider:
 # you can add packaging information here
 #package:
 #  include:
-#    - include-me.js
+#    - include-me.py
 #    - include-me-dir/**
 #  exclude:
-#    - exclude-me.js
+#    - exclude-me.py
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.handler
-    memorySize: 128
-    timeout: 10
+  connectionHandler:
+    handler: connect.connectionHandler
     events:
-      - http:
-         path: /
-         
+      - websocket:
+          route: $connect
+          authorizer: auth
+      - websocket:
+          route: $disconnect
+  defaultHandler:
+    handler: handler.defaultHandler
+    events:
+      - websocket: $default #simple event definition without extra route property
+  auth:
+    handler: auth.lambda_handler
+    # events:
+    #   - websocket:
+    #       route: foo # will trigger if $request.body.action === "foo"
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -109,57 +121,10 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-# resources:
-#   apigw:
-#     Type: AWS::ApiGatewayV2::Api
-#     Properties:
-#       Name: apigw
-#       ProtocolType: HTTP
-#       RouteSelectionExpression:
-      
+resources:
+ Resources:
+   Apibucket:
+     Type: AWS::S3::Bucket
+     Properties:
+       BucketName: api-websocket-bucket
 
-#       ApiKeySelectionExpression: String
-#       BasePath: String
-#       Body: Json
-#       BodyS3Location: 
-#         BodyS3Location
-#       CorsConfiguration: 
-#         Cors
-#       CredentialsArn: String
-#       Description: String
-#       DisableExecuteApiEndpoint: Boolean
-#       DisableSchemaValidation: Boolean
-#       FailOnWarnings: Boolean
- 
-
-#       RouteKey: String
-#       RouteSelectionExpression: String
-#       Tags: Json
-#       Target: String
-#       Version: String
-  
-#   apiRoute:
-#     Type: AWS::ApiGatewayV2::Route
-#     Properties:
-#       ApiId: !Ref apigw
-#       RouteKey: $auth
-
-#   apiIntegration:
-#     Type: AWS::ApiGatewayV2::Integration
-#     Properties:
-#       ApiId: !Ref apigw
-#       Description: Connect Integration
-#       IntegrationType: AWS_PROXY
-#       IntegrationUri: 
-
-
-
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
