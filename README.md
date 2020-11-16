@@ -48,4 +48,5 @@ sls remove
 ### __Serverless plugin to create a VPC__
 ```
 npx sls plugin install -n serverless-vpc-plugin
+npx sls plugin install -n serverless-python-requirements
 ```

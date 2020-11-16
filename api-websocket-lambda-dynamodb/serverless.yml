@@ -91,12 +91,10 @@ functions:
       - websocket:
           route: $disconnect
 
-  helloHandler:
-    handler: hello.helloHandler
+  defaultHandler:
+    handler: default.defaultHandler
     events:
-      - websocket:
-          route: hello
-          routeResponseSelectionExpression: $default
+      - websocket: $default
 
 
 #    The following are a few example events you can configure
@@ -110,12 +108,12 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
-Resources:
-  ApiBuckect:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: api-bucket
+resources:
+  Resources:
+    ApiBuckect:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: api-bucket
 
 #  Outputs:
 #     NewOutput:
