@@ -5,25 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "name": "nodemon",
-            "program": "node-course/${workspaceFolder}/index.js",
+            "type": "node",
             "request": "launch",
-            "restart": true,
-            "runtimeExecutable": "nodemon",
+            "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "type": "pwa-node"
-        },
-
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/app.js"
         }
     ]
 }
