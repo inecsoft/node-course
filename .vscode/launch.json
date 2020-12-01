@@ -7,11 +7,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Node Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/app.js"
+            "program": "${workspaceFolder}/static-assets/index.js"
         }
     ]
 }
