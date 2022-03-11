@@ -1,4 +1,0 @@
-FROM node:alpine
-LABEL author="ivan pedro arteaga"
-COPY index.js /index.js
-ENTRYPOINT ["node", "index.js"]
