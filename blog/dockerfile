@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:16.14.2-alpine
 LABEL author="ivan pedro arteaga"
 COPY index.js /index.js
 ENTRYPOINT ["node", "index.js"]
