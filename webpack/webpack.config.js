@@ -7,6 +7,9 @@ const host = process.env.HOST || 'localhost';
 process.env.NODE_ENV = 'development';
 
 module.exports = {
+  entry: {
+    main: path.resolve(__dirname, './src/index.js'),
+  },
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
@@ -20,6 +23,7 @@ module.exports = {
   ],
   mode: 'development',
   output: {
+    // The [name] in the output will be main, as specified in the entry object.
     filename: '[name]/index.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true
@@ -36,6 +40,6 @@ module.exports = {
     // Enable hot reloading
     // hot: true,
     // host,
-    port: 9000,
+    port: 7000,
   }
 };
