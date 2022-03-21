@@ -1,5 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+// Host
+const host = process.env.HOST || 'localhost';
+
+// Required for babel-preset-react-app
+process.env.NODE_ENV = 'development';
 
 module.exports = {
   plugins: [
@@ -15,10 +20,22 @@ module.exports = {
   ],
   mode: 'development',
   output: {
+    filename: '[name]/index.js',
+    path: path.resolve(__dirname, 'dist'),
     clean: true
   },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
   devServer: {
-    contentBase: './dist',
-    open: true
+    // Serve index.html as the base
+    // contentBase: './dist',
+    open: true,
+    // Enable compression
+    compress: true,
+    // Enable hot reloading
+    // hot: true,
+    // host,
+    port: 9000,
   }
 };
