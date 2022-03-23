@@ -9,6 +9,7 @@ unzip gh-pages.zip
 npm init -y
 npm install nodemon --save-dev
 npm install express
+npm install express-edge --save
 ```
 ### __Start project__
 ```

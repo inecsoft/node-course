@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "@egjs/flicking": "^4.5.1",
-    "panzoom": "^9.4.2"
+    "express": "^4.17.3",
+    "express-edge": "^2.0.2",
+    "panzoom": "^9.4.2",
+    "path": "^0.12.7"
   }
 }

@@ -1,5 +1,3 @@
-import panzoom from 'panzoom';
-import flicking from '@egjs/flicking';
+import updateOutput from './output';
 
-console.log(panzoom);
-console.log(flicking);
+updateOutput('output');
