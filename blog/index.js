@@ -3,7 +3,7 @@ const path    = require('path')
 const { config, engine } = require('express-edge');
  
 const port  = 3000
-const address = '127.0.0.1'
+const address = process.env.HOST || 'localhost';
 
 const app = new express()
 app.use(express.static('public'))
