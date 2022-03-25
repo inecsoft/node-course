@@ -24,8 +24,8 @@ module.exports = {
   mode: 'development',
   output: {
     // The [name] in the output will be main, as specified in the entry object.
-    filename: '[name]/index.js',
-    path: path.resolve(__dirname, 'dist'),
+    // filename: '[name]/index.js',
+    // path: path.resolve(__dirname, 'dist'),
     clean: true
   },
   resolve: {
