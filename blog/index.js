@@ -1,7 +1,9 @@
 const express = require('express')
 const path    = require('path')
 const { config, engine } = require('express-edge');
- 
+
+require('dotenv').config()
+
 const port  = 3000
 const address = process.env.HOST || 'localhost';
 
@@ -25,6 +27,22 @@ app.get('/contact', (req, res) => {
 
 app.get('/post', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'pages/post.html'))
+})
+
+// app.get('/json', (req, res) => {
+//     res.json(JSON.stringify({ message: "Hello json"} ));
+//     // res.json({
+//     //     message: "Hello json"
+//     // });
+// })
+
+app.get('/json', (req, res) => {
+    if (process.env.MESSAGE_STYLE === 'uppercase') {
+        res.json({ message: "Hello json"});
+    } 
+    else {
+        res.json({ message: "Hello json".toUpperCase()});
+    }
 })
 
 app.listen(port, address,  () => {
