@@ -15,6 +15,7 @@ app.set('views', `${__dirname}/views`);
 
 app.get('/', (req, res) => {
     res.render('index');
+    console.log(req)
 })
 
 app.get('/about', (req, res) => {
@@ -29,21 +30,6 @@ app.get('/post', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'pages/post.html'))
 })
 
-// app.get('/json', (req, res) => {
-//     res.json(JSON.stringify({ message: "Hello json"} ));
-//     // res.json({
-//     //     message: "Hello json"
-//     // });
-// })
-
-app.get('/json', (req, res) => {
-    if (process.env.MESSAGE_STYLE === 'uppercase') {
-        res.json({ message: "Hello json"});
-    } 
-    else {
-        res.json({ message: "Hello json".toUpperCase()});
-    }
-})
 
 app.listen(port, address,  () => {
     console.log('App listening on ' + address + ':' + port);
