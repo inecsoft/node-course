@@ -91,7 +91,7 @@ app.get('/name', (req, res, next) => {
 // Use body-parser to Parse POST Requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.get('/bodyparse', (req, res, next) => {
+app.get('/body', (req, res, next) => {
     res.body;
     console.log(req.body)
 })

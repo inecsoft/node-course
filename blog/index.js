@@ -1,13 +1,13 @@
-const express = require('express')
-const path    = require('path')
+const express = require('express');
+const path    = require('path');
 const { config, engine } = require('express-edge');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const port  = 3000
 const address = process.env.HOST || 'localhost';
 
-const app = new express()
+const app = new express();
 app.use(express.static('public'))
 // Automatically sets view engine and adds dot notation to app.render
 app.use(engine)
@@ -19,15 +19,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/about.html'))
+    res.sendFile(path.resolve(__dirname, 'pages/about.html'));
 })
 
 app.get('/contact', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/contact.html'))
+    res.sendFile(path.resolve(__dirname, 'pages/contact.html'));
 })
 
 app.get('/post', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages/post.html'))
+    res.sendFile(path.resolve(__dirname, 'pages/post.html'));
 })
 
 
