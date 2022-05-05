@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "eu-west-1",
+        "django_settings": "bookstore.settings",
+        "profile_name": "dumy",
+        "project_name": "bookstore",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-bookstore-tfgm"
+    }
+}
