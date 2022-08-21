@@ -43,7 +43,7 @@ npx create-next-app@latest --ts
 ```
   yarn dev
 ```
-### __ Builds the app for production__
+### __Builds the app for production__
 ```   
   yarn build
 ```
@@ -58,4 +58,6 @@ npx create-next-app@latest --ts
   cd nextjs-app
   yarn dev
 ```
+***
+REF: https://www.freecodecamp.org/news/nextjs-and-harperdb-tutorial-build-a-full-stack-app/
 ***
