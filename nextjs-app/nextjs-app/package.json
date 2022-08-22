@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node ./database-test.js  && next dev",
     "build": "next build",
     "start": "next start",
+    "db": "node ./database-test.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -18,10 +19,13 @@
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
+    "@types/sqlite3": "^3.1.8",
     "autoprefixer": "^10.4.4",
     "eslint": "8.12.0",
     "eslint-config-next": "12.1.4",
     "postcss": "^8.4.12",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.0.11",
     "tailwindcss": "^3.0.23",
     "typescript": "4.6.3"
   }

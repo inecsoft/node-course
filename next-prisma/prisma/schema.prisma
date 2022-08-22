@@ -15,5 +15,6 @@ model Contact {
   firstName String
   lastName  String
   email     String
+  phone     String
   avatar    String @default("")
 }

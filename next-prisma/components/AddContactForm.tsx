@@ -34,6 +34,14 @@ export default function AddContactForm(props: AddContactFormProps) {
       </InputSpacer>
       <InputSpacer>
         <Input
+          placeholder="Phone"
+          name="phone"
+          formRef={register({ required: true })}
+        />
+        {errors.phone && <FormError errorMessage="Phone is required" />}
+      </InputSpacer>
+      <InputSpacer>
+        <Input
           placeholder="Email"
           name="email"
           formRef={register({ required: true })}
@@ -42,7 +50,7 @@ export default function AddContactForm(props: AddContactFormProps) {
       </InputSpacer>
       <InputSpacer>
         <Input
-          placeholder="Avatar"
+          placeholder="github Avatar"
           name="avatar"
           formRef={register({ required: true })}
         />

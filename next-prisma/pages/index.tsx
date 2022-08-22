@@ -3,13 +3,14 @@ import Head from 'next/head';
 import AddContactForm from './../components/AddContactForm';
 import ContactCard from './../components/ContactCard';
 
+import PageHeading from "../components/PageHeading"
+
 import { PrismaClient, Contact, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
   const contacts: Contact[] = await prisma.contact.findMany();
-  console.log(contacts)
   return {
     props: {
       initialContacts: contacts
@@ -40,6 +41,11 @@ export default function Index({ initialContacts }) {
           href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
           rel="stylesheet"
         />
+        <div className="mx-auto mt-20">
+          <PageHeading extraClasses="text-center mb-8">
+            Create an account
+          </PageHeading>
+        </div>
       </Head>
       <div className="flex">
         <section className="w-1/3 bg-gray-800 h-screen p-8">

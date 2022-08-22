@@ -86,7 +86,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 ```
+***
+__How to install prisma__
 
-## License
-
-MIT
+```
+npm i -D prisma @prisma/client
+```
+```
+npx prisma init
+npx prisma migrate dev --preview-feature
+npx prisma studio
+```
+***
